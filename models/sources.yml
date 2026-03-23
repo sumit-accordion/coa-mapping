@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  #########################################
+  # GOLD LAYER: Refined Dimensions & Facts
+  #########################################
+  - name: cdm_finance
+    description: "Refined Dimension and Fact tables for NetSuite ERP data."
+    database: "{{ env_var('DBT_DATABASE','DATA_PLATFORM_DB') }}"
+    schema: "{{ env_var('DBT_GOLD_SCHEMA', 'CDM_FINANCE') }}"
+    tables:
+      - name: dim_chart_of_accounts
+      
+  - name: coa_mapping
+    description: "Cleaned and standardized Sage Intacct records (Silver Layer)"
+    database: "{{ env_var('DBT_DATABASE','DATA_PLATFORM_DB') }}"
+    schema: "{{ env_var('DBT_REPORTING_SCHEMA', 'COA_MAPPING') }}"
+    tables:
+      - name: map_coa_reporting
+        description: "The table contains financial mapping records, specifically for accounting and budgeting purposes."
